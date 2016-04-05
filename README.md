@@ -15,7 +15,7 @@ and have you practice the iOS Networking knowledge you learned to use a
 popular company's API.
 
 ## Instructions
-**Create Photo app**
+**Create a Photo Social Network App**
 * Required
   * Photo.swift - the model which represents a single Photo object
     * You only need to implement the init
