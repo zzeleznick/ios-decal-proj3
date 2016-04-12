@@ -18,6 +18,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     // MARK - Types
     var photos: [Photo]!
     var cellHeight: CGFloat = 240
+    let imageSize: CGSize = CGSize(width: 240, height: 240)
     var myIndexPath: NSIndexPath!
     
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         // collection.delegate = self // N/A since CVController
 
         // self.title = "Posts"
-        collection.backgroundColor = UIColor.clearColor()
+        // collection.backgroundColor = UIColor.clearColor()
 
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -53,9 +54,10 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         let pic = photos[indexPath.row]
         cell.userLabel.text = pic.username
-        cell.likeLabel.text = "\(pic.likes)"
+        cell.likeLabel.text = "\(Utils.commaFormat(pic.likes))"
         loadImageForCell(pic, imageView: cell.myImage)
-
+        
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
 
@@ -76,7 +78,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         let pic = photos[myIndexPath.row]
         let postBundle : [String: Any] =    ["username":pic.username,
-                                            "likes": "\(pic.likes)",
+                                            "likes": pic.likes,
                                             "date" : pic.createdDate,
                                             "imageData": pic.imageData]
         dest.dataBundle = postBundle
@@ -95,7 +97,9 @@ class PhotosCollectionViewController: UICollectionViewController {
 
             if data != nil {
                 photo.imageData = data
+                // image = RBSquareImageTo(UIImage(data: data!)!, size: self.imageSize)
                 image = UIImage(data: data!)
+
             }
             dispatch_async(dispatch_get_main_queue()) {
                 imageView.image = image

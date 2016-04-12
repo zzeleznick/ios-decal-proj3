@@ -26,11 +26,15 @@ class PhotoCell: UICollectionViewCell {
         userLabel?.textColor = UIColor.blackColor()
         userLabel?.font = UIFont(name: Theme.fontName, size: Theme.titleSize)
         
-        likeLabel?.textColor = UIColor(white: 0.45, alpha: 1.0)
+        likeLabel?.textColor = UIColor(white: 0.25, alpha: 1.0)
         likeLabel?.font = UIFont(name: Theme.fontName, size: Theme.subtitleSize)
 
         
-        myImage?.layer.borderColor = UIColor(white: 0.2, alpha: 1.0).CGColor
+        myImage?.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
         myImage?.layer.borderWidth = 0.5
+        myImage?.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        myImage?.layer.cornerRadius = CGRectGetWidth(myImage.frame)/25.0
+        myImage?.clipsToBounds = true
+        
     }
 }

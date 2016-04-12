@@ -27,4 +27,17 @@ class Utils {
         let urlStr = "https://api.instagram.com/v1/tags/\(hashtag)/media/recent?client_id=\(cid)"
         return NSURL(string: urlStr)!
     }
+    
+    class func commaFormat(number: Int) -> String {
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        return numberFormatter.stringFromNumber(number)!
+    }
+    
+    class func commaStrFormat(numberString: String) -> String {
+        let number = Int(numberString)
+        return commaFormat(number!)
+    }
+    
+   
 }

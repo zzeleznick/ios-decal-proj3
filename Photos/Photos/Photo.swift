@@ -31,9 +31,12 @@ class Photo {
         print("Init called from Photo with data \(data)")
         self.postURL = data["link"] as! String
         let imgObj = data["images"] as! [String:AnyObject]
-        let resObj = imgObj["standard_resolution"] as! [String:AnyObject]
+        let resObj = imgObj["low_resolution"] as! [String:AnyObject]
+        // low is 320 x 320, standard is 640 x 640
         self.photoURL = resObj["url"] as! String
 
+        // NOTE: Photos are padded with white space for square results
+        
         let likeObj = data["likes"] as! [String:AnyObject]
         self.likes = likeObj["count"] as! Int
         let userObj = data["user"] as! [String:AnyObject]
