@@ -19,6 +19,8 @@ class Photo {
     var imageData : NSData!
     /* The url to the post */
     var postURL : String!
+    /* Date of creation */
+    var createdDate: String!
 
 
     /* Parses a NSDictionary and creates a photo object. */
@@ -36,6 +38,7 @@ class Photo {
         self.likes = likeObj["count"] as! Int
         let userObj = data["user"] as! [String:AnyObject]
         self.username = userObj["username"] as! String
+        self.createdDate = data["created_time"] as! String
     }
 
 }

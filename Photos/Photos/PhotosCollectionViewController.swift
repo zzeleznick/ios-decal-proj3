@@ -18,14 +18,15 @@ class PhotosCollectionViewController: UICollectionViewController {
     // MARK - Types
     var photos: [Photo]!
     var cellHeight: CGFloat = 240
-
+    var myIndexPath: NSIndexPath!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
         // collection.delegate = self // N/A since CVController
 
-        self.title = "Posts"
+        // self.title = "Posts"
         collection.backgroundColor = UIColor.clearColor()
 
         layout.minimumLineSpacing = 0
@@ -51,7 +52,6 @@ class PhotosCollectionViewController: UICollectionViewController {
 
 
         let pic = photos[indexPath.row]
-
         cell.userLabel.text = pic.username
         cell.likeLabel.text = "\(pic.likes)"
         loadImageForCell(pic, imageView: cell.myImage)
@@ -62,24 +62,30 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        myIndexPath = indexPath
+        self.performSegueWithIdentifier("MainToCrap", sender: self)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("Clicked on Segue")
+        let dest : PhotoDetailViewController = segue.destinationViewController as! PhotoDetailViewController
 
+        let pic = photos[myIndexPath.row]
+        let postBundle : [String: Any] =    ["username":pic.username,
+                                            "likes": "\(pic.likes)",
+                                            "date" : pic.createdDate,
+                                            "imageData": pic.imageData]
+        dest.dataBundle = postBundle
+    }
 
     /* Creates a session from a photo's url to download data to instantiate a UIImage.
        It then sets this as the imageView's image. */
     func loadImageForCell(photo: Photo, imageView: UIImageView) {
 
-        /*
-        let url = NSURL(string: photo.photoURL)!
-
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if error == nil {
-                let img = UIImage(data: data!)
-                imageView.image = img
-            }
-        }
-        task.resume()
-        */
         let downloadQueue = dispatch_queue_create("com.zeleznick.processdowload", nil)
 
         dispatch_async(downloadQueue) {
