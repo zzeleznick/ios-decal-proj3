@@ -25,8 +25,16 @@ class PhotoDetailViewController : UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.setHidesBackButton(false, animated: true)
         postImage.image = UIImage(data: dataBundle["imageData"] as! NSData)
-        dateLabel.text = "\(dataBundle["date"]!)"
+        let date = NSDate(timeIntervalSince1970: Double("\(dataBundle["date"]!)")!)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        dateLabel.text = "\(dateFormatter.stringFromDate(date))"
         userLabel.text = "\(dataBundle["username"]!)"
         likeLabel.text = "\(dataBundle["likes"]!)"
+        
+        likeLabel.font = UIFont(name: Theme.fontName, size: Theme.subtitleSize)
+        dateLabel.font = UIFont(name: Theme.fontName, size: Theme.subtitleSize)
     }
 }
