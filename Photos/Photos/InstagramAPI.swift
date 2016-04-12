@@ -11,8 +11,8 @@ import Foundation
 class InstagramAPI {
     /* Connects with the Instagram API and pulls resources from the server. */
     func loadPhotos(completion: (([Photo]) -> Void)!) {
-        /* 
-         * 1. Get the endpoint URL to the popular photos 
+        /*
+         * 1. Get the endpoint URL to the popular photos
          *    HINT: Look in Utils
          * 2. Create a Session
          * 3. Create a Data Task with a URL and completionHandler
@@ -23,7 +23,6 @@ class InstagramAPI {
          *       d. Wait for completion of Photos array
          */
         // FILL ME IN
-<<<<<<< HEAD
         let url: NSURL = Utils.getPopularURL()
 
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
@@ -41,20 +40,6 @@ class InstagramAPI {
                         let pepe: Photo  = Photo(data: obj)
                         photos.append(pepe)
                     }
-=======
-        var url: NSURL
-
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if error == nil {
-                //FIX ME
-                var photos: [Photo]!
-                do {
-                    let feedDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    // FILL ME IN, REMEMBER TO USE FORCED DOWNCASTING
-                    
-                    
->>>>>>> c707703f85ce9887168fabb0a3e02bfe637035ee
                     // DO NOT CHANGE BELOW
                     let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                     dispatch_async(dispatch_get_global_queue(priority, 0)) {
