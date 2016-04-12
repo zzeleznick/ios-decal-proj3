@@ -9,6 +9,7 @@
 import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController {
+<<<<<<< HEAD
     
     // MARK - Storyboard Outlets
     @IBOutlet weak var collection: UICollectionView!
@@ -17,10 +18,14 @@ class PhotosCollectionViewController: UICollectionViewController {
     // MARK - Types
     var photos: [Photo]!
     var cellHeight: CGFloat = 240
+=======
+    var photos: [Photo]!
+>>>>>>> c707703f85ce9887168fabb0a3e02bfe637035ee
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+<<<<<<< HEAD
         // collection.delegate = self // N/A since CVController
         
         self.title = "Posts"
@@ -36,6 +41,11 @@ class PhotosCollectionViewController: UICollectionViewController {
         let api = InstagramAPI()
         api.loadPhotos(didLoadPhotos)
         
+=======
+        let api = InstagramAPI()
+        api.loadPhotos(didLoadPhotos)
+        // FILL ME IN
+>>>>>>> c707703f85ce9887168fabb0a3e02bfe637035ee
     }
 
     /* 
@@ -43,6 +53,7 @@ class PhotosCollectionViewController: UICollectionViewController {
      * Examples include cellForItemAtIndexPath, numberOfSections, etc.
      */
     
+<<<<<<< HEAD
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collection.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
@@ -94,13 +105,23 @@ class PhotosCollectionViewController: UICollectionViewController {
             }
         }
         
+=======
+    /* Creates a session from a photo's url to download data to instantiate a UIImage. 
+       It then sets this as the imageView's image. */
+    func loadImageForCell(photo: Photo, imageView: UIImageView) {
+        
+>>>>>>> c707703f85ce9887168fabb0a3e02bfe637035ee
     }
     
     /* Completion handler for API call. DO NOT CHANGE */
     func didLoadPhotos(photos: [Photo]) {
         self.photos = photos
+<<<<<<< HEAD
         // self.collectionView!.reloadData()
         self.collection!.reloadData()
+=======
+        self.collectionView!.reloadData()
+>>>>>>> c707703f85ce9887168fabb0a3e02bfe637035ee
     }
     
 }
